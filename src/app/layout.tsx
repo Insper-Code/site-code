@@ -9,6 +9,9 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: "Insper Code",
+  icons: {
+    icon: "/favicon.pgn", 
+  },
 };
 
 export default function RootLayout({
@@ -18,9 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body
-        className={`${montserrat.variable} antialiased`} 
-      >
+      <body className={`${montserrat.variable} antialiased`}> 
         {children}
       </body>
     </html>
