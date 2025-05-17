@@ -10,7 +10,7 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Insper Code",
   icons: {
-    icon: "/favicon.png", 
+    icon: "/favicon.ico", 
   },
 };
 
