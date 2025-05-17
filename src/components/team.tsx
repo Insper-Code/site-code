@@ -26,6 +26,12 @@ export function Team() {
   const [ano, setAno] = useState(anosDisponiveis[0])
   const [gestao, setGestao] = useState<IntegranteInfo[]>([])
   const [coordenadores, setCoordenadores] = useState<IntegranteInfo[]>([])
+  interface IntegranteCSV {
+    Nome: string
+    Sobrenome: string
+    Cargo: string
+    LinkedIn: string
+  }
 
   useEffect(() => {
     fetch(`/assets/equipes/${ano}/integrantes.csv`)
@@ -36,15 +42,17 @@ export function Team() {
 
         const dados = linhas.slice(1).map(linha => {
           const valores = linha.split(",")
-          const obj: any = {}
-          cabecalho.forEach((col, i) => { obj[col.trim()] = valores[i]?.trim() })
-          return {
-            nome: obj.Nome,
-            sobrenome: obj.Sobrenome,
-            cargo: obj.Cargo,
-            linkedin: obj.LinkedIn,
-            imagem: `/assets/equipes/${ano}/img/${normalizarNome(obj.Nome, obj.Sobrenome)}.webp`
-          }
+          const obj: Partial<IntegranteCSV> = {}
+          cabecalho.forEach((col, i) => {
+            obj[col.trim() as keyof IntegranteCSV] = valores[i]?.trim()
+          })
+        return {
+          nome: obj.Nome ?? "",
+          sobrenome: obj.Sobrenome ?? "",
+          cargo: obj.Cargo ?? "",
+          linkedin: obj.LinkedIn ?? "",
+          imagem: `/assets/equipes/${ano}/img/${normalizarNome(obj.Nome ?? "", obj.Sobrenome ?? "")}.webp`
+        }
         })
 
         const ordenado = dados.sort((a, b) => {
