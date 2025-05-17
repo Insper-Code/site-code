@@ -1,5 +1,4 @@
 import { ServiceCard } from "./services-components/service-card"
-import { PiNotePencilThin } from "react-icons/pi";
 import { PiDevicesThin, PiGameControllerThin, PiCalendarDotsThin, PiBrainThin } from "react-icons/pi";
 
 
