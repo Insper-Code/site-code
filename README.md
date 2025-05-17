@@ -53,4 +53,4 @@ Site institucional da organização estudantil Insper Code, apresentando serviç
    # ou
    yarn dev
    ```
-4. Acesse no navegador: http://localhost:3000 ou http://inspercode.vercel.app
+4. Acesse no navegador: http://localhost:3000
