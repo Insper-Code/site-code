@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
+import { AuthButton } from "./auth/AuthButton";
 
 type NavItem = { name: string; targetId: string };
 
@@ -16,7 +17,15 @@ const navItems: NavItem[] = [
   { name: "Contato", targetId: "contact" },
 ];
 
-export function Header() {
+interface HeaderProps {
+  user?: {
+    name?: string | null;
+    email?: string | null;
+    role?: string;
+  } | null;
+}
+
+export function Header({ user }: HeaderProps = {}) {
   const [activeSection, setActiveSection] = useState("home");
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -56,19 +65,24 @@ export function Header() {
           />
         </Link>
 
-        {/* botão “Membros” (só desktop) */}
-        <Link
-          href="/membros"
-          className="
-            hidden md:inline-block
-            px-3 py-1 rounded-sm font-medium
-            bg-transparent text-[#3773B5]
-            shadow-[inset_0_0_0_2px_#3773B5]
-            hover:shadow-[inset_0_0_0_2.5px_#3773B5]
-          "
-        >
-          Gestão
-        </Link>
+        {/* Botões direita (desktop) */}
+        <div className="hidden md:flex items-center gap-3">
+          {!user && (
+            <Link
+              href="/membros"
+              className="
+                px-4 py-2 rounded-md font-medium text-sm
+                bg-transparent text-[#3773B5]
+                shadow-[inset_0_0_0_2px_#3773B5]
+                hover:shadow-[inset_0_0_0_2.5px_#3773B5]
+                transition-all
+              "
+            >
+              Gestão
+            </Link>
+          )}
+          <AuthButton user={user} />
+        </div>
 
         {/* botão hamburguer mobile */}
         <button
@@ -128,14 +142,21 @@ export function Header() {
             </button>
           ))}
 
-          {/* link “Membros” também no menu mobile */}
-          <Link
-            href="/membros"
-            onClick={() => setMobileOpen(false)}
-            className="px-6 py-3 rounded-sm bg-[#327DCF]/20 font-medium"
-          >
-            Gestão
-          </Link>
+          {/* Link Gestão mobile - só se não estiver logado */}
+          {!user && (
+            <Link
+              href="/membros"
+              onClick={() => setMobileOpen(false)}
+              className="px-6 py-3 rounded-sm bg-[#327DCF]/20 font-medium"
+            >
+              Gestão
+            </Link>
+          )}
+
+          {/* Auth Button no menu mobile */}
+          <div className="mt-4">
+            <AuthButton user={user} />
+          </div>
         </nav>
       )}
     </header>

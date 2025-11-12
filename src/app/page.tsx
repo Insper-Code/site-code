@@ -8,13 +8,16 @@ import { Contact } from "../components/contact"
 import { Projects } from "../components/project";
 import { Wave } from "@/components/wave"
 import {Data} from "@/components/data-components/data"
+import { auth } from "@/lib/auth"
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
+  
   return (
     <div className="flex flex-col items-center justify-start bg-zinc-100">
 
       <section id="home" className="relative w-full bg-white overflow-hidden">
-        <Header />
+        <Header user={session?.user} />
         <Wave />
         <div className="flex items-center justify-center h-[50vh] md:h-[85vh]">
           <Slogan />
