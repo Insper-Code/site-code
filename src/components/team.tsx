@@ -13,7 +13,7 @@ type IntegranteInfo = {
   imagem: string
 }
 
-const anosDisponiveis = ["2025.1"]
+const anosDisponiveis = ["2025.2","2025.1"]
 
 function normalizarNome(nome: string, sobrenome: string) {
   return `${nome}${sobrenome}`
