@@ -129,7 +129,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (!token.isValid) {
         return {
           ...session,
-          user: undefined as any,
+          user: undefined as unknown as typeof session.user,
         };
       }
 
