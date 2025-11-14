@@ -4,7 +4,6 @@ import * as React from "react"
 import { PartnerLogo } from "./partner-logo";
 
 const LogoList = [
-    "/assets/intelli-gamelab.png",
     "/assets/fund-estudar.jpeg",
     "/assets/in-health.jpeg",
     "/assets/ibs-americas2.png",
