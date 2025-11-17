@@ -10,7 +10,7 @@ import { FaCss3Alt } from "react-icons/fa";
 
 export function Projects() {
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 group">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 group auto-rows-fr ">
         <CardProjeto
         image="/assets/estoca-ai.png"
         title="Estoca Aí"
@@ -91,7 +91,7 @@ export function Projects() {
             },
             {
               nome: "CSS",
-              icone: <FaCss3Alt />,
+              icone: <FaCss3Alt className="text-xl"/>,
               cor: {
                 border: "border-sky-600",  // antes: border-black
                 text:   "text-sky-600",    // antes: text-black
